@@ -18,7 +18,7 @@ android {
     }
 
     defaultConfig {
-        compileSdk = 35
+        compileSdk = 36
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.test"
         // You can update the following values to match your application needs.

@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:test/google_auth_controller.dart';
 import 'package:test/notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
+  HomeScreen({super.key});
+  final googleauth = Get.put(GoogleAuthController());
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -110,6 +111,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ],
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          widget.googleauth.signOut();
+                        },
+                        child: Icon(Icons.logout_outlined, color: Colors.white),
                       ),
                     ],
                   ),
