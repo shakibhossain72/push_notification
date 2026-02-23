@@ -7,120 +7,74 @@ class NotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final RemoteMessage? message = Get.arguments as RemoteMessage?;
+    // Get.arguments থেকে নোটিফিকেশন ডাটা নেওয়া
+    final RemoteMessage? message = Get.arguments is RemoteMessage
+        ? Get.arguments
+        : null;
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Notification'),
-        backgroundColor: Colors.blue.shade700,
+        title: const Text(
+          'Notification Detail',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white,
         elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: message == null
-          ? const Center(
-              child: Text(
-                'No notification data',
-                style: TextStyle(fontSize: 16),
-              ),
-            )
-          : SingleChildScrollView(
+          ? const Center(child: Text('No new notifications'))
+          : Padding(
+              padding: const EdgeInsets.all(20.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Header
+                  // নোটিফিকেশন কার্ড
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Colors.blue.shade700, Colors.blue.shade400],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
-                      ),
+                      color: Colors.blue.shade50,
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(
-                          Icons.notifications_active,
-                          color: Colors.white,
-                          size: 40,
+                        Row(
+                          children: [
+                            const Icon(Icons.chat_bubble, color: Colors.blue),
+                            const SizedBox(width: 10),
+                            Text(
+                              message.notification?.title ?? "New Message",
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 10),
                         Text(
-                          message.notification?.title ?? 'No title',
+                          message.notification?.body ?? "",
                           style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          message.notification?.body ?? '',
-                          style: const TextStyle(
-                            color: Colors.white70,
                             fontSize: 16,
+                            color: Colors.black87,
                           ),
                         ),
                       ],
                     ),
                   ),
-
-                  const SizedBox(height: 24),
-
-                  // Data section
-                  if (message.data.isNotEmpty)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        elevation: 4,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Additional Information',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                              ...message.data.entries.map(
-                                (e) => Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 6,
-                                  ),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '${e.key}: ',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Expanded(child: Text(e.value.toString())),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                  const SizedBox(height: 20),
+                  // এক্সট্রা ডাটা থাকলে তা দেখানোর জন্য
+                  if (message.data.isNotEmpty) ...[
+                    const Text(
+                      "Raw Data:",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-
-                  const SizedBox(height: 40),
+                    const SizedBox(height: 10),
+                    Text(message.data.toString()),
+                  ],
                 ],
               ),
             ),
