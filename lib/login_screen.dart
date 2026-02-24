@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test/auth_controller.dart';
+import 'package:test/google_auth_controller.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final AuthController authController = Get.put(AuthController());
+  final googleauthController = Get.put(GoogleAuthController());
 
   LoginScreen({super.key});
 
@@ -171,9 +173,47 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+
+                SizedBox(height: 16),
+
+                googleSignInButton(),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget googleSignInButton() {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      child: ElevatedButton.icon(
+        onPressed: () {
+          googleauthController.signInWithGoogle();
+        },
+        icon: Image.network(
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png',
+          height: 24,
+        ),
+        label: Text(
+          "Sign in with Google",
+          style: TextStyle(
+            color: Colors.black87,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.grey,
+          padding: EdgeInsets.symmetric(vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(color: Colors.grey.shade300),
+          ),
+          elevation: 2,
         ),
       ),
     );

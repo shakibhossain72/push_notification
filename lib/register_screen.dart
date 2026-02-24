@@ -120,9 +120,9 @@ class RegisterScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       authController.register(
-                        nameController.text,
-                        emailController.text,
-                        passwordController.text,
+                        emailController.text.trim(),
+                        passwordController.text.trim(),
+                        nameController.text.trim(),
                       );
                     },
                     style: ElevatedButton.styleFrom(

@@ -62,10 +62,10 @@ void main() async {
     await FirebaseMessaging.instance.setAutoInitEnabled(true);
 
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
   await FcmService().initNotifications();
 
-  // Run app
   runApp(const MyApp());
 }
 
