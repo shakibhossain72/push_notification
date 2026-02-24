@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "955693165411",
-    "project_id": "test-app-ecf2b",
-    "storage_bucket": "test-app-ecf2b.firebasestorage.app"
+    "project_number": "709545492383",
+    "project_id": "push-notification-313f7",
+    "storage_bucket": "push-notification-313f7.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:955693165411:android:468a9b8ce0d36299104156",
+        "mobilesdk_app_id": "1:709545492383:android:f9a176113be2c3d11f07aa",
         "android_client_info": {
           "package_name": "com.example.test"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAEJSPbQiH1FdzT5e2LBvz3AaYlONARzCQ"
+          "current_key": "AIzaSyD8gJYFRxmIlIV6HZTrwt4FxKWnmKPu8r0"
         }
       ],
       "services": {
